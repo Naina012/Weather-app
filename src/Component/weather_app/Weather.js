@@ -1,4 +1,4 @@
-import React, { useEffect ,useState} from "react";
+import React, { useEffect, useState } from "react";
 
 const Weather = ({
   temp,
@@ -10,43 +10,56 @@ const Weather = ({
   country,
   sunset,
 }) => {
-  const [weatherState, setWeatheState] = useState("");
+  const [weatherState, setWeatherState] = useState("");
+  const [temperatureUnit, setTemperatureUnit] = useState("Celsius");
 
   useEffect(() => {
     if (weathermood) {
       switch (weathermood) {
         case "Clouds":
-          setWeatheState("wi-day-cloudy");
+          setWeatherState("wi-day-cloudy");
           break;
         case "Smoke":
-          setWeatheState("wi-fog");
+          setWeatherState("wi-fog");
           break;
         case "Clear":
-          setWeatheState("wi-day-sunny");
+          setWeatherState("wi-day-sunny");
           break;
         case "Mist":
-          setWeatheState("wi-dust");
+          setWeatherState("wi-dust");
           break;
         case "Rain":
-            setWeatheState("wi-rain");
-            break;
-
+          setWeatherState("wi-rain");
+          break;
         default:
-          setWeatheState("wi-day-sunny");
+          setWeatherState("wi-day-sunny");
           break;
       }
     }
   }, [weathermood]);
 
+  const toggleTemperatureUnit = () => {
+    setTemperatureUnit((prevUnit) =>
+      prevUnit === "Celsius" ? "Fahrenheit" : "Celsius"
+    );
+  };
+
+  const convertTemperature = (temp) => {
+    if (temperatureUnit === "Celsius") {
+      return `${temp}&deg;C`;
+    } else {
+      const fahrenheit = (temp * 9) / 5 + 32;
+      return `${fahrenheit.toFixed(1)}&deg;F`;
+    }
+  };
+
   // converting the seconds into time
   let sec = sunset;
   let date = new Date(sec * 1000);
   let timeStr = `${date.getHours()}:${date.getMinutes()}`;
+
   return (
     <>
-
-
-    {/* temp card sevtion.... */}
       <article className="widget">
         <div className="weatherIcon">
           <i className={`wi ${weatherState}`}></i>
@@ -54,7 +67,7 @@ const Weather = ({
 
         <div className="weatherInfo">
           <div className="temperature">
-            <span>{temp}&deg;</span>
+            <span>{convertTemperature(temp)}</span>
           </div>
 
           <div className="description">
@@ -67,7 +80,12 @@ const Weather = ({
 
         <div className="date"> {new Date().toLocaleString()} </div>
 
-        {/* our 4column section  */}
+        <div className="toggle">
+          <button onClick={toggleTemperatureUnit}>
+            {temperatureUnit === "Celsius" ? "°F" : "°C"}
+          </button>
+        </div>
+
         <div className="extra-temp">
           <div className="temp-info-minmax">
             <div className="two-sided-section">
