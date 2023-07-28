@@ -30,7 +30,7 @@ Enhancing the search input with autocomplete suggestions makes finding locations
 `Loading State`
 To enhance the user experience while fetching weather data from the Rapid API, the app includes a loading state. While the data is being fetched, a spinner or message will be displayed to indicate that the app is working to retrieve the most up-to-date weather information.
 
-`How to Contribute`
+## How to Contribute
 If you're interested in contributing to the Responsive-WeatherApp project, follow these steps:
 
 - Clone the repository: git clone https://github.com/naina012/Weather-app.git
@@ -44,7 +44,7 @@ If you're interested in contributing to the Responsive-WeatherApp project, follo
 
 We welcome contributions from the open-source community and appreciate any feedback or improvements you can bring to the project!
 
-`Acknowledgments`
+## Acknowledgments
 Special thanks to Rapid API for providing the weather data API, which made this project possible.
 
 
